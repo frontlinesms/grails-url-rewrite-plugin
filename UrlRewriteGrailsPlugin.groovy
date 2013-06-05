@@ -9,5 +9,23 @@ class UrlRewriteGrailsPlugin {
 	def license = "APACHE"
 	def issueManagement = [system: "Github", url: "https://github.com/alxndrsn/grails-url-rewrite-plugin/issues"]
 	def scm = [url: "https://github.com/alxndrsn/grails-url-rewrite-plugin"]
+
+	def loadBefore = []
+	def doWithWebDescriptor = { webxml ->
+		webxml.filter[-1] + {
+			filter {
+				'filter-name' 'UrlRewriteFilter'
+				'filter-class' 'org.tuckey.web.filters.urlrewrite.UrlRewriteFilter'
+			}
+		}
+		webxml.filter[-1] + {
+			'filter-mapping' {
+				'filter-name' 'UrlRewriteFilter'
+				'url-pattern' '/*'
+				dispatcher 'REQUEST'
+				dispatcher 'FORWARD'
+			}
+		}
+	}
 }
 
