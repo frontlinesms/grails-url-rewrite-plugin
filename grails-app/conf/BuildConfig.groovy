@@ -12,7 +12,7 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile 'org.tuckey:urlrewritefilter:4.0.3'
+		compile 'org.tuckey:urlrewritefilter:4.0.4'
 	}
 
 	plugins {
